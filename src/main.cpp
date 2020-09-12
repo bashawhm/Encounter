@@ -25,7 +25,6 @@ void removeEnt(Stage &stage) {
 void encounter(Stage &stage) {
 	bool still = true;
 	while(still) {
-		refresh();
 		stage.render();
 		printToilet(stage);
 		printMonkey(stage);
@@ -71,11 +70,11 @@ void encounter(Stage &stage) {
 				mvprintw(newVPAD+6, HPAD, "Really? That's what you want? Okay.......");
 				mvprintw(newVPAD+8, HPAD, "*BOOM*");
 				getch();
-				endwin();
-				exit(1);
+				stage.ents[stage.player].health = 0;
 			}
             default: {
-				mvprintw(newVPAD+6, HPAD, "Try again: %d", input);
+				mvprintw(newVPAD+10, HPAD, "Try again: %d", input);
+				break;
             }
 		}
 		
